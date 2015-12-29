@@ -1,5 +1,7 @@
 package com.pm25.model;
 
+import java.sql.Date;
+
 public class PM25Object {
 	public PM25Object() {
 		// TODO Auto-generated constructor stub
@@ -34,17 +36,32 @@ public class PM25Object {
 	public void setPosition_name(String position_name) {
 		this.position_name = position_name;
 	}
-	public String getTime_point() {
+	public Date getTime_point() {
 		return time_point;
 	}
-	public void setTime_point(String time_point) {
+	public void setTime_point(Date time_point) {
 		this.time_point = time_point;
 	}
+	public String getQuality() {
+		return quality;
+	}
+	public void setQuality(String quality) {
+		this.quality = quality;
+	}
+	public String getStation_code() {
+		return station_code;
+	}
+	public void setStation_code(String station_code) {
+		this.station_code = station_code;
+	}
+
 	
 	private int aqi;
 	private String area;
 	private int pm2_5;
 	private int pm2_5_24h;
+	private String quality;
+	private String station_code;
 	private String position_name;
-	private String time_point;
+	private Date time_point;
 }

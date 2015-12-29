@@ -33,15 +33,15 @@ public class HttpClient {
 		if (result.getCode()==200) {
 			String bodyString=result.getResponseBody();
 			if( bodyString.indexOf("error")!=-1) {
-				try {
-					@SuppressWarnings("unchecked")
-					List<PM25Object> pmList=(List<PM25Object>)JsonConvert.PM25ParseJson(bodyString);
-					
-					//下面就是写入数据库的代码
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//				try {
+//					//@SuppressWarnings("unchecked")
+//					//List<PM25Object> pmList=(List<PM25Object>)JsonConvert.PM25ParseJson(bodyString);
+//					
+//					//下面就是写入数据库的代码
+//				} catch (JSONException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 			}
 		}
 		

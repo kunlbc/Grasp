@@ -2,8 +2,12 @@ package com.resources;
 import java.util.*;
 
 import com.ab.request.IhttpRestult;
+import com.ab.util.Idao;
 import com.im.request.*;
+import com.pm25.model.PM25Object;
 import com.pm25.model.Pm25Error;
+import com.pm25.util.JsonConvert;
+import com.pm25.util.MysqlDAO;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -68,7 +72,7 @@ public class Test {
 //		Properties properties=configuration.getProperties("bin/com/resources/prop.properties");
 //		System.out.println(properties.getProperty("pm25.url"));
 		try {
-			FileInputStream fin=new FileInputStream(new File("bin/com/resources/demo2.txt"));
+			FileInputStream fin=new FileInputStream(new File("bin/com/resources/demo.txt"));
 			int size=fin.available();
 			byte[] buffer=new byte[size];
 			fin.read(buffer);
@@ -81,11 +85,24 @@ public class Test {
 //				System.out.println(jObject.get("aqi"));
 //			}
 			//System.out.println(jArray.length());
+			Idao dao=new MysqlDAO();
 			if (s.indexOf("error")!=-1) {
 				JSONObject jObject=new JSONObject(s);
 				Pm25Error pm25Error=new Pm25Error();
 				pm25Error.setPm25error(jObject.getString("error"));
 				System.out.println(pm25Error.getPm25error());
+			}
+			else {
+				List<PM25Object> pmList=(List<PM25Object>)JsonConvert.PM25ParseJson(s);
+				for (PM25Object pm25Object : pmList) {
+					String sqlString="insert ignore into pmdata(aqi,pmarea,pm25,pm25_24h,pmposition,pmquality"
+							+ ",stationcode,time_point) values ("+pm25Object.getAqi()+",'"+pm25Object.getArea()+"',"
+							+pm25Object.getPm2_5()+","+pm25Object.getPm2_5_24h()+",'"+pm25Object.getPosition_name()
+							+"','"+pm25Object.getQuality()+"','"+pm25Object.getStation_code()+"','"+pm25Object.getTime_point()+"')";
+					dao.exeInsertItem(sqlString);
+				}
+				
+				//System.out.println(pmList.get(0).getTime_point().toLocaleString());
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
