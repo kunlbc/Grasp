@@ -94,12 +94,14 @@ public class Test {
 			}
 			else {
 				List<PM25Object> pmList=(List<PM25Object>)JsonConvert.PM25ParseJson(s);
+				int index=0;
 				for (PM25Object pm25Object : pmList) {
-					String sqlString="insert ignore into pmdata(aqi,pmarea,pm25,pm25_24h,pmposition,pmquality"
-							+ ",stationcode,time_point) values ("+pm25Object.getAqi()+",'"+pm25Object.getArea()+"',"
+					String sqlString="insert ignore into pmdata(id,aqi,pmarea,pm25,pm25_24h,pmposition,pmquality"
+							+ ",stationcode,time_point) values ('Õ¾µã"+index+"',"+pm25Object.getAqi()+",'"+pm25Object.getArea()+"',"
 							+pm25Object.getPm2_5()+","+pm25Object.getPm2_5_24h()+",'"+pm25Object.getPosition_name()
 							+"','"+pm25Object.getQuality()+"','"+pm25Object.getStation_code()+"','"+pm25Object.getTime_point()+"')";
 					dao.exeInsertItem(sqlString);
+					index++;
 				}
 				
 				//System.out.println(pmList.get(0).getTime_point().toLocaleString());

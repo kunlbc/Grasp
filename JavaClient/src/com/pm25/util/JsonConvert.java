@@ -30,9 +30,9 @@ public class JsonConvert {
 			pm25.setPosition_name(jObject.getString("position_name"));
 			pm25.setQuality(jObject.getString("quality"));
 			pm25.setStation_code(jObject.getString("station_code"));
-			String temp=jObject.getString("time_point").replace("T", " ");
-			
-			pm25.setTime_point(new Date(sdf.parse(temp.substring(0,temp.length()-1)).getTime()));//StringToTime(jObject.getString("time_point")));
+			String part1=jObject.getString("time_point").replace("T", " ");
+			String part2=part1.substring(0,part1.length()-1);
+			pm25.setTime_point(part2);//StringToTime(jObject.getString("time_point")));
 			pmList.add(pm25);
 		}		
 		return pmList;

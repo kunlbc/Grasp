@@ -36,10 +36,10 @@ public class PM25Object {
 	public void setPosition_name(String position_name) {
 		this.position_name = position_name;
 	}
-	public Date getTime_point() {
+	public String getTime_point() {
 		return time_point;
 	}
-	public void setTime_point(Date time_point) {
+	public void setTime_point(String time_point) {
 		this.time_point = time_point;
 	}
 	public String getQuality() {
@@ -63,5 +63,5 @@ public class PM25Object {
 	private String quality;
 	private String station_code;
 	private String position_name;
-	private Date time_point;
+	private String time_point;
 }
