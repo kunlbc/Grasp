@@ -20,7 +20,7 @@ public class PM25Application {
 			}
 		};
 		java.util.Date t=new java.util.Date(); 
-		timer.schedule(task,t,30*60*1000);
+		timer.schedule(task,t,60*60*1000);
 	}
 
 }
